@@ -2,16 +2,25 @@ package com.albert.ludopatycards;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.albert.ludopatycards.managers.DeckApiManager;
 import com.albert.ludopatycards.model.Deck;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
+
+    @BindView(R.id.activity_main__card_image) ImageView cardImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ButterKnife.bind(this);
 
         DeckApiManager apiManager = new DeckApiManager();
         apiManager.setOnNewDeckListener(new DeckApiManager.DeckApiManagerNewDeckListener() {
@@ -21,5 +30,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         apiManager.newDeck(this);
+
+        cardImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 }

@@ -66,4 +66,16 @@ public class DeckApiManager {
             listener.onNewDeck(deck);
         }
     }
+
+   /* private void cardParseJSON(String response) {
+        Gson gson = new GsonBuilder().create();
+        Reader reader = new StringReader(response);
+
+        CardEntity cardEntity = gson.fromJson(reader, CardEntity.class);
+
+        Card card = new Card();
+        card.setId(deckEntity.getDeck_id()); // pasa lo ke hemos cogido del texto de internet (deck_id) a nuestro metodo set en Deck; esto es parsear
+        card.setRemaining(deckEntity.getRemaining());
+
+    }*/
 }

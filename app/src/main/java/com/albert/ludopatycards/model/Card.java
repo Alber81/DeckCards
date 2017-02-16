@@ -14,6 +14,16 @@ public class Card {
 
     private Suit suit;
     private String image;
+    private int remaining;
+
+    public int getRemaining() {
+        return remaining;
+    }
+
+    public void setRemaining(int remaining) {
+        this.remaining = remaining;
+    }
+
 
     public Suit getSuit() {
         return suit;

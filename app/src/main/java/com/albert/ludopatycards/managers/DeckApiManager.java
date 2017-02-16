@@ -4,6 +4,7 @@ package com.albert.ludopatycards.managers;
 import android.content.Context;
 import android.util.Log;
 
+import com.albert.ludopatycards.model.Card;
 import com.albert.ludopatycards.model.Deck;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -67,15 +68,13 @@ public class DeckApiManager {
         }
     }
 
-   /* private void cardParseJSON(String response) {
+    private void cardParseJSON(String response) {
         Gson gson = new GsonBuilder().create();
         Reader reader = new StringReader(response);
 
         CardEntity cardEntity = gson.fromJson(reader, CardEntity.class);
 
         Card card = new Card();
-        card.setId(deckEntity.getDeck_id()); // pasa lo ke hemos cogido del texto de internet (deck_id) a nuestro metodo set en Deck; esto es parsear
-        card.setRemaining(deckEntity.getRemaining());
-
-    }*/
+        
+    }
 }

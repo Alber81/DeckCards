@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.albert.ludopatycards.managers.DeckApiManager;
+import com.albert.ludopatycards.model.Card;
 import com.albert.ludopatycards.model.Deck;
 
 import butterknife.BindView;
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        DeckApiManager apiManager = new DeckApiManager();
+        final DeckApiManager apiManager = new DeckApiManager();
         apiManager.setOnNewDeckListener(new DeckApiManager.DeckApiManagerNewDeckListener() {
             @Override
             public void onNewDeck(Deck deck) {
@@ -31,12 +32,23 @@ public class MainActivity extends AppCompatActivity {
         });
         apiManager.newDeck(this);
 
+
         cardImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                DeckApiManager apiManager = new DeckApiManager();
+                apiManager.setOnNewCardListener(new DeckApiManager.DeckApiManagerNewCardListener() {
+                    @Override
+                    public void onNewCard(Card card) {
+
+                    }
+                });
+
+                apiManager.drawCard(getBaseContext());
+                Card.getImage();
             }
         });
-        apiManager.drawCard(this);
+
     }
 }

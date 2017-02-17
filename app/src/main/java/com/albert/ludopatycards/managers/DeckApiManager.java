@@ -69,6 +69,17 @@ public class DeckApiManager {
         }
     }
 
+
+
+    public interface DeckApiManagerNewCardListener {
+        public void onNewCard(Card card);
+    }
+
+    private DeckApiManagerNewCardListener cardListener;
+
+    public void setOnNewCardListener(DeckApiManagerNewCardListener cardListener) {
+        this.cardListener = cardListener;
+    }
     public void drawCard (Context context) {
         RequestQueue queue = Volley.newRequestQueue(context);
 
@@ -96,10 +107,13 @@ public class DeckApiManager {
         Reader reader = new StringReader(response);
 
         CardEntity cardEntity = gson.fromJson(reader, CardEntity.class);
-        CardEntity.Cards cardEntityImage = gson.fromJson(reader, CardEntity.Cards.class);
 
         Card card = new Card();
-        card.setImage(cardEntityImage.getImage());
+        card.setImage(cardEntity.getCardUrl());
         card.setRemaining(cardEntity.getRemaining());
+
+        if (cardListener !=null) {
+            cardListener.onNewCard(card);
+        }
     }
 }

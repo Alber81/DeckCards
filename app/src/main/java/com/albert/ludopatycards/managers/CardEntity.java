@@ -19,7 +19,16 @@ public class CardEntity {
         this.remaining = remaining;
     }
 
+    public String getCardUrl() {
+        String cardUrl = "";
 
+        if (this.cards !=null && this.cards.size()>0) {
+            Cards firstCard  = this.cards.get(0);
+            cardUrl = firstCard.getImage();
+        }
+
+        return cardUrl;
+    }
     public class Cards {
 
         @SerializedName("image")  String image;

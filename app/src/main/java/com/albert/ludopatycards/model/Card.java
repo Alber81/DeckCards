@@ -13,7 +13,7 @@ public class Card {
     }
 
     private Suit suit;
-    private String image;
+    private static String image;
     private int remaining;
 
     public int getRemaining() {
@@ -33,7 +33,7 @@ public class Card {
         this.suit = suit;
     }
 
-    public String getImage() {
+    public static String getImage() {
         return image;
     }
 

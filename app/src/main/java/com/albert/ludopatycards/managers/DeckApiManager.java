@@ -73,8 +73,10 @@ public class DeckApiManager {
         Reader reader = new StringReader(response);
 
         CardEntity cardEntity = gson.fromJson(reader, CardEntity.class);
+        CardEntity.Cards cardEntityImage = gson.fromJson(reader, CardEntity.Cards.class);
 
         Card card = new Card();
-        
+        card.setImage(cardEntityImage.getImage());
+        card.setRemaining(cardEntity.getRemaining());
     }
 }

@@ -22,7 +22,7 @@ public class CardEntity {
 
     public class Cards {
 
-        @SerializedName("image") String image;
+        @SerializedName("image")  String image;
 
         public String getImage() {
             return image;

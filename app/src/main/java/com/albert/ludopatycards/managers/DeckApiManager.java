@@ -30,6 +30,7 @@ public class DeckApiManager {
     }
 
     private static final String NEW_DECK_REQUEST = "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1";
+    private static final String NEW_CARD_REQUEST = "https://deckofcardsapi.com/api/deck/" + Deck.getId() + "/draw/?count=1";
 
     public void newDeck(Context context) {
         RequestQueue queue = Volley.newRequestQueue(context);
@@ -66,6 +67,28 @@ public class DeckApiManager {
         if (listener !=null) {
             listener.onNewDeck(deck);
         }
+    }
+
+    public void drawCard (Context context) {
+        RequestQueue queue = Volley.newRequestQueue(context);
+
+        StringRequest request = new StringRequest(NEW_CARD_REQUEST, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                // todotodito ok
+                Log.d("RESPONSE", response);
+                cardParseJSON(response);
+
+            }
+        }, new Response.ErrorListener() {
+            public void onErrorResponse(VolleyError error) {
+                // Houston, tenemos un problema
+                Log.e("HORROR", "Connection went to shit to the tracks");
+            }
+        });
+
+        queue.add(request);
     }
 
     private void cardParseJSON(String response) {

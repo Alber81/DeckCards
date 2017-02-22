@@ -4,7 +4,7 @@ package com.albert.ludopatycards.model;
 
 public class Deck {
 
-    private int remaining;
+    private static int remaining;
     private static String id;
 
     public Deck() {
@@ -18,7 +18,7 @@ public class Deck {
         this.id = id;
     }
 
-    public int getRemaining() {
+    public static int getRemaining() {
         return remaining;
     }
 

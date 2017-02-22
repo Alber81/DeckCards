@@ -14,9 +14,9 @@ public class Card {
 
     private Suit suit;
     private static String image;
-    private int remaining;
+    private static int remaining;
 
-    public int getRemaining() {
+    public static int getRemaining() {
         return remaining;
     }
 

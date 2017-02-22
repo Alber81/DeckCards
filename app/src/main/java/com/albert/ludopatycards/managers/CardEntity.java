@@ -3,13 +3,22 @@ package com.albert.ludopatycards.managers;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CardEntity {
 
     @SerializedName("remaining") private int remaining;
-    @SerializedName("cards") private List<Cards> cards;
+    @SerializedName("cards") private List<CardEntity> cards;
 
+
+    public List<CardEntity> getCards() {
+        return cards;
+    }
+
+    public void setCards(List<CardEntity> cards) {
+        this.cards = cards;
+    }
 
     public int getRemaining() {
         return remaining;
@@ -23,13 +32,15 @@ public class CardEntity {
         String cardUrl = "";
 
         if (this.cards !=null && this.cards.size()>0) {
-            Cards firstCard  = this.cards.get(0);
-            cardUrl = firstCard.getImage();
+            CardEntity firstCard = this.cards.get(0);
+            cardUrl = firstCard.toString();
         }
 
         return cardUrl;
     }
+    /*
     public class Cards {
+
 
         @SerializedName("image")  String image;
 
@@ -41,4 +52,5 @@ public class CardEntity {
             this.image = image;
         }
     }
+    */
 }

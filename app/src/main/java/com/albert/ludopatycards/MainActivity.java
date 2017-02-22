@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                DeckApiManager apiManager = new DeckApiManager();
+                final DeckApiManager apiManager = new DeckApiManager();
                 apiManager.setOnNewCardListener(new DeckApiManager.DeckApiManagerNewCardListener() {
                     @Override
                     public void onNewCard(Card card) {

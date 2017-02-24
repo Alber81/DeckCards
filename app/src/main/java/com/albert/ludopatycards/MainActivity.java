@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-                cardApiManager.drawCard(getBaseContext());
-                Picasso.with(getBaseContext()).load(Card.getImage()).into(cardImage);
+                cardApiManager.drawCard(getApplicationContext());
+                Picasso.with(getApplicationContext()).load(Card.getImage()).into(cardImage);
                 cardLeft.setText(Card.getRemaining() + " Cards left!");
 
             }

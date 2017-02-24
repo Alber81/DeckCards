@@ -9,14 +9,14 @@ import java.util.List;
 public class CardEntity {
 
     @SerializedName("remaining") private int remaining;
-    @SerializedName("cards") private List<CardEntity> cards;
+    @SerializedName("cards") private List<Cards> cards;
 
 
-    public List<CardEntity> getCards() {
+    public List<Cards> getCards() {
         return cards;
     }
 
-    public void setCards(List<CardEntity> cards) {
+    public void setCards(List<Cards> cards) {
         this.cards = cards;
     }
 
@@ -28,29 +28,35 @@ public class CardEntity {
         this.remaining = remaining;
     }
 
-    public String getCardUrl() {
-        String cardUrl = "";
 
-        if (this.cards !=null && this.cards.size()>0) {
-            CardEntity firstCard = this.cards.get(0);
-            cardUrl = firstCard.toString();
-        }
 
-        return cardUrl;
-    }
-    /*
     public class Cards {
+        @SerializedName("image") Image image;
 
 
-        @SerializedName("image")  String image;
-
-        public String getImage() {
+        public Image getImage() {
             return image;
         }
 
-        public void setImage(String image) {
+        public void setImage(Image image) {
             this.image = image;
         }
+
+
+
     }
-    */
+    public class Image {
+        @SerializedName(".png") String png;
+
+        public String getPng() {
+            return png;
+        }
+
+        public void setPng(String png) {
+            this.png = png;
+        }
+
+        @SerializedName(".svg") String svg;
+
+    }
 }

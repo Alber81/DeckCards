@@ -16,6 +16,17 @@ public class Card {
     private static String image;
     private static int remaining;
 
+    public Card() {
+    }
+
+    public Card(int remaining) {
+        this.remaining = remaining;
+    }
+
+    public Card(String image) {                // con realm hay k poner un constructor vacío
+        this.image = image;
+    }
+
     public static int getRemaining() {
         return remaining;
     }

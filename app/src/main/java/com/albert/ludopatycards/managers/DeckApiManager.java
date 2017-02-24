@@ -109,8 +109,12 @@ public class DeckApiManager {
         CardEntity cardEntity = gson.fromJson(reader, CardEntity.class);
 
         Card card = new Card();
-        card.setImage(cardEntity.getCardUrl());
         card.setRemaining(cardEntity.getRemaining());
+
+        CardEntity.Image cardImageEntity = gson.fromJson(reader, CardEntity.Image.class);
+
+
+        card.setImage(cardImageEntity.getPng());
 
         if (cardListener !=null) {
             cardListener.onNewCard(card);

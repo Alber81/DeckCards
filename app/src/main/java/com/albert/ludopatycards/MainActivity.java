@@ -26,6 +26,36 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+        myDeck();
+
+        cardImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            repaintCard();
+
+            }
+        });
+
+        if (Card.getRemaining() == 0) {
+            myDeck();
+        }
+
+    }
+    public void repaintCard() {
+        final DeckApiManager cardApiManager = new DeckApiManager();
+        cardApiManager.setOnNewCardListener(new DeckApiManager.DeckApiManagerNewCardListener() {
+            @Override
+            public void onNewCard(Card card) {
+
+            }
+        });
+        cardApiManager.drawCard(this);
+        Picasso.with(this).load(Card.getImage()).into(cardImage);
+        cardLeft.setText(Card.getRemaining() + " Cards left!");
+    }
+
+    public void myDeck() {
         final DeckApiManager apiManager = new DeckApiManager();
         apiManager.setOnNewDeckListener(new DeckApiManager.DeckApiManagerNewDeckListener() {
             @Override
@@ -35,27 +65,5 @@ public class MainActivity extends AppCompatActivity {
         });
         apiManager.newDeck(this);
         cardLeft.setText(Deck.getRemaining() + " Cards left!");
-
-
-
-        cardImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                final DeckApiManager cardApiManager = new DeckApiManager();
-                cardApiManager.setOnNewCardListener(new DeckApiManager.DeckApiManagerNewCardListener() {
-                    @Override
-                    public void onNewCard(Card card) {
-
-                    }
-                });
-
-                cardApiManager.drawCard(getApplicationContext());
-                Picasso.with(getApplicationContext()).load(Card.getImage()).into(cardImage);
-                cardLeft.setText(Card.getRemaining() + " Cards left!");
-
-            }
-        });
-
     }
 }

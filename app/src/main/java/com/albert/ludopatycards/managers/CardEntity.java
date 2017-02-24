@@ -31,22 +31,21 @@ public class CardEntity {
 
 
     public class Cards {
-        @SerializedName("image") Image image;
+
+        @SerializedName("images") Png image;
 
 
-        public Image getImage() {
+        public Png getImage() {
             return image;
         }
 
-        public void setImage(Image image) {
+        public void setImage(Png image) {
             this.image = image;
         }
-
-
-
     }
-    public class Image {
-        @SerializedName(".png") String png;
+
+    public class Png {
+        @SerializedName("png") String png;
 
         public String getPng() {
             return png;
@@ -55,8 +54,6 @@ public class CardEntity {
         public void setPng(String png) {
             this.png = png;
         }
-
-        @SerializedName(".svg") String svg;
 
     }
 }

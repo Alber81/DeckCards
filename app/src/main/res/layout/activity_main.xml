@@ -19,10 +19,20 @@
         android:id="@+id/activity_main__cards_left_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="50sp"
+        android:textSize="40sp"
         tools:text="300 cards left!"
         android:gravity="center"
         android:textColor="#ffc000"
         android:background="#ddddddff"
         />
+    <Button
+        android:id="@+id/activity_main___newDeck_button"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:text="New Deck"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:textColor="#ffc000"
+        android:layout_centerInParent="true"
+        android:background="#00FFFFFF"/>
 </RelativeLayout>

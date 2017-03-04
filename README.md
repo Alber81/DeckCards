@@ -1,5 +1,6 @@
 # DeckCards
 
-Inicialmente cuando crea la actividad(onCreate) no nos da la baraja de cartas pero cuando la actividad pasa a onStop y luego a onStart (onRestart) si nos la da.
-
-Cuando hacemos onClick en la imagen no nos proporciona una carta
+Inicialmente se le da a NEW DECK para una nueva baraja.
+Cada vez que se pulse sobre la carta dará una nueva carta.
+Cuando acabe la baraja, pide una nueva con NEW DECK.
+Si se pausa la aplicación o se relanza nos pide una nueva baraja.

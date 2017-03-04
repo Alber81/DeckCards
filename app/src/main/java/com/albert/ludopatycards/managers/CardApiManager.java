@@ -17,35 +17,35 @@ import com.google.gson.GsonBuilder;
 import java.io.Reader;
 import java.io.StringReader;
 
-public class DeckApiManager {
-
-    public interface DeckApiManagerNewDeckListener {
-        public void onNewDeck(Deck deck);
+public class CardApiManager {
+    public interface CardApiManagerNewCardListener{
+        public void onNewCard(Card card);
     }
 
-    private DeckApiManagerNewDeckListener listener;
+    private CardApiManagerNewCardListener listener;
 
-    public void setOnNewDeckListener(DeckApiManagerNewDeckListener listener) {
+    public void setListener(CardApiManagerNewCardListener listener) {
         this.listener = listener;
     }
 
-    private static final String NEW_DECK_REQUEST = "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1";
+    private static final String INIT_URL = "https://deckofcardsapi.com/api/deck/";
+    private static final String FINAL_URL = "/draw/?count=1";
 
-    public void newDeck(Context context) {
+    public void newCard(Context context, Deck deck){
         RequestQueue queue = Volley.newRequestQueue(context);
 
-        StringRequest request = new StringRequest(NEW_DECK_REQUEST, new Response.Listener<String>() {
+        String url = INIT_URL + deck.getId() +FINAL_URL;
+        Log.d("URL",url);
 
+        StringRequest request = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                // todotodito ok
                 Log.d("RESPONSE", response);
                 parseJSON(response);
-
             }
-        }, new Response.ErrorListener() {
+        }, new Response.ErrorListener(){
+            @Override
             public void onErrorResponse(VolleyError error) {
-                // Houston, tenemos un problema
                 Log.e("HORROR", "Connection went to shit to the tracks");
             }
         });
@@ -54,18 +54,18 @@ public class DeckApiManager {
     }
 
     private void parseJSON(String response) {
+        Reader reader= new StringReader(response);
         Gson gson = new GsonBuilder().create();
-        Reader reader = new StringReader(response);
 
-        DeckEntity deckEntity = gson.fromJson(reader, DeckEntity.class);
+        CardEntity cardEntity = gson.fromJson(reader, CardEntity.class);
 
-        Deck deck = new Deck();
-        deck.setId(deckEntity.getDeck_id()); // pasa lo ke hemos cogido del texto de internet (deck_id) a nuestro metodo set en Deck; esto es parsear
-        deck.setRemaining(deckEntity.getRemaining());
+        Card card = new Card();
+        card.setImage(cardEntity.getCards().get(0).getImage());
 
-        if (listener !=null) {
-            listener.onNewDeck(deck);
+        card.setRemaining(cardEntity.getRemaining());
+
+        if(listener !=null){
+            listener.onNewCard(card);
         }
     }
-
 }

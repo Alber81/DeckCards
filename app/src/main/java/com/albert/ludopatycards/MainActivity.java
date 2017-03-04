@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
 
                         if (card.getRemaining()==0){
                             newDeck.setVisibility(View.VISIBLE);
-                            cardImage.setVisibility(View.INVISIBLE);
                             Picasso.with(MainActivity.this).load(card.getImage()).placeholder(R.drawable.card_back_blue).into(cardImage);
                         }
                     }
